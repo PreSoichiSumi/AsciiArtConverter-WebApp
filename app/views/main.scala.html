@@ -1,0 +1,65 @@
+@*
+ * This template is called from the `index` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * two arguments, a `String` for the title of the page and an `Html`
+ * object to insert into the body of the page.
+ *@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="jp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+
+        @* Here's where we render the page title `String`. *@
+        <title>@title</title>
+
+
+        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/bootstrap.min.css")'>
+        <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/narrow-jumbotron.css")'>
+
+        <script src='@routes.Assets.versioned("javascripts/jquery-1.12.2.min.js")'></script>
+
+
+    </head>
+
+    <body>
+        @* And here's where we render the `Html` object containing
+         * the page content. *@
+        <div class="container">
+            <div class="header clearfix">
+                <H3 class="text-muted">Project name</H3>
+
+                <!--<nav>
+                <ul class="nav nav-pills pull-left">
+
+                </ul>
+                <ul class="nav nav-pills pull-xs-right">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                  </li>
+                </ul>
+              </nav>-->
+
+
+            </div>
+            @content
+            <footer class="footer">
+                <p>&copy; Team-BAKURETSU 2016</p>
+            </footer>
+        </div>
+    </body>
+</html>
