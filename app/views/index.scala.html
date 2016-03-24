@@ -16,12 +16,14 @@
         <p id="width-height">width: height: </p>
         <p>↓以下に画像を表示</p>
         <img id="image" alt="" class="img-responsive center-block"><br><br>
-
-        <br><br>
         <p>↓以下にdataURLを表示</p>
         <textarea name="name" id="print_DataURL" readonly></textarea>
     </div>
 
+    <div id="editor" style="height: 600px"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+
+    <script src='@routes.Assets.versioned("javascripts/ace-setting.js")'></script>
     <script src='@routes.Assets.versioned("javascripts/drag-drop.js")'></script>
 
 }
