@@ -21,7 +21,7 @@
         @* Here's where we render the page title `String`. *@
         <title>@title</title>
 
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.css">
         <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/bootstrap.min.css")'>
         <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/narrow-jumbotron.css")'>
 
@@ -49,9 +49,8 @@
     <body>
         @* And here's where we render the `Html` object containing
          * the page content. *@
-        <div class="container">
+        <div class="container-fluid wide">
             <div class="header clearfix">
-                <!--<H3 class="text-muted">Project name</H3>-->
 
                 <nav>
                 <ul class="nav nav-pills pull-left">

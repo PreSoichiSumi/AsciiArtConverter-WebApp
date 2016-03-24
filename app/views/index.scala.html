@@ -1,17 +1,86 @@
 @*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
+* This template takes a single argument, a String containing a
+* message to display.
+*@
 @(message: String)
-
 @*
- * Call the the `main` template with two arguments. The first
- * argument is a `String` with the title of the page, the second
- * argument is an `Html` object containing the body of the page.
- *@
+* Call the the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is an `Html` object containing the body of the page.
+*@
 @main("AsciiArtConverter") {
+    <div class="row">
+        <div class="col-xs-6">
+            <div id="drop-zone">ここにドロップ！</div>
+        </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">画像サイズ</label>
+                    <div class="col-md-5">
+                        <select name="area" class="form-control">
+                            <option value="same">変更しない</option>
+                            <option value="size1">640 x 480</option>
+                            <option value="size2">800 x 600</option>
+                            <option value="size3">960 x 540</option>
+                            <option value="size4">1024 x 720</option>
+                            <option value="size5">1280 x 768</option>
+                            <option value="size6">1980 x 1080</option>
+                        </select>
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">輪郭抽出精度</label>
+                    <div class="col-md-5">
+                        <input id="slider" type="text" data-slider-min="0"
+                            data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+                        <span id="ex6CurrentSliderValLabel"> 　精度: <span id="accuracy">50</span></span>
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">輪郭抽出比較範囲</label>
+                    <div class="col-md-5">
+                        <select name="area" class="form-control">
+                            <option value="3">3 x 3</option>
+                            <option value="5">5 x 5</option>
+                            <option value="7">7 x 7</option>
+                            <option value="9">9 x 9</option>
+                        </select>
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">フォント</label>
+                    <div class="col-md-5">
+                        <select name="area" class="form-control">
+                            <option value="3">ＭＳ ゴシック</option>
+                            <option value="5">ＭＳ Ｐゴシック</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+                <!--<p><b></b></p>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gender" value="1" id="man">
+                    男
+                </label>
+                <label>
+                <input type="radio" name="gender" value="2" id="woman">
+                女
+                </label>
+            </div>
+            <div class="radio">
 
-    <div id="drop-zone">ここにドロップ！</div>
+            </div>-->
+        </div>
+    </div>
+
     <div id="print_img">
         <p id="width-height">width: height: </p>
         <p>↓以下に画像を表示</p>
@@ -20,9 +89,11 @@
         <textarea name="name" id="print_DataURL" readonly></textarea>
     </div>
 
-    <div id="editor" style="height: 600px"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
 
+    <div id="editor" style="height : 600px"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.js"></script>
+    <script src='@routes.Assets.versioned("javascripts/slider-setting.js")'></script>
     <script src='@routes.Assets.versioned("javascripts/ace-setting.js")'></script>
     <script src='@routes.Assets.versioned("javascripts/drag-drop.js")'></script>
 
