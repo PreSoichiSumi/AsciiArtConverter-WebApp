@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
 //  "com.github.oguna" % "aacj" % "1.0.0"
 )
 
-
+routesGenerator:=InjectedRoutesGenerator
 
 
 
