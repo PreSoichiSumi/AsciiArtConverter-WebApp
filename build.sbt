@@ -9,7 +9,8 @@ unmanagedBase := baseDirectory.value / "lib"
 libraryDependencies ++= Seq(
   javaJdbc,
   cache,
-  javaWs//,
+  javaWs,
+  evolutions//,
 //  "com.github.oguna" % "aacj" % "1.0.0"
 )
 
