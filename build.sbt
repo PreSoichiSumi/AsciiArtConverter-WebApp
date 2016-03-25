@@ -10,7 +10,9 @@ libraryDependencies ++= Seq(
   javaJdbc,
   cache,
   javaWs,
-  evolutions//,
+  evolutions,
+  "commons-codec" % "commons-codec" % "1.10"
+  //,
 //  "com.github.oguna" % "aacj" % "1.0.0"
 )
 

@@ -5,7 +5,11 @@ import aacj.util.AAUtil;
 import play.*;
 import play.mvc.*;
 
+import util.ConvertionUtil;
 import views.html.*;
+
+import java.io.IOException;
+import java.util.Base64;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -24,5 +28,14 @@ public class HomeController extends Controller {
     }
     public Result tst(){
         return ok("hello");
+    }
+    public Result getAA(String base64){
+        String tmp;
+        try {
+            tmp = ConvertionUtil.aaConvertion(base64);
+        }catch (IOException e){
+            return badRequest("an error occured while reading image");
+        }
+        return ok(tmp);
     }
 }

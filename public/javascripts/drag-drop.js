@@ -1,6 +1,7 @@
 /**
  * Created by s-sumi on 2016/03/24.
  */
+var endpoint='';
 (function() {
     /*
      http://www.html5rocks.com/ja/tutorials/file/dndfiles/
@@ -65,6 +66,17 @@
         img.setAttributeNode(src);
         document.getElementById(print_DataURL_id).value = result_DataURL;
         printWidthHeight('image', 'width-height');
+        var jsn={}
+        $.ajax({
+            url: endpoint+'getAA/',
+            dataType: 'application/json',
+            data: {'base64' : result_DataURL},
+            type: 'GET',
+            success: function(str){
+                $('#editor').text(str);
+            }   });
+
+
     }
     //width, height表示
     function printWidthHeight( img_id, width_height_id ) {
