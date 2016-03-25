@@ -1,5 +1,7 @@
 package controllers;
 
+import aacj.*;
+import aacj.util.AAUtil;
 import play.*;
 import play.mvc.*;
 
@@ -20,5 +22,7 @@ public class HomeController extends Controller {
     public Result index() {
         return ok(index.render("You are already ready."));
     }
-
+    public Result tst(){
+        return ok("hello");
+    }
 }
