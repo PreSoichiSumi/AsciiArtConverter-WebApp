@@ -66,15 +66,16 @@ var endpoint='';
         img.setAttributeNode(src);
         document.getElementById(print_DataURL_id).value = result_DataURL;
         printWidthHeight('image', 'width-height');
-        var jsn={}
+        var jsn={'base64':result_DataURL.replace('data:image/jpeg;base64,',"")};
         $.ajax({
-            url: endpoint+'getAA/',
+            url: endpoint+'getAA',
             dataType: 'application/json',
-            data: {'base64' : result_DataURL},
-            type: 'GET',
+            data: jsn,
+            type: 'POST',
             success: function(str){
                 $('#editor').text(str);
-            }   });
+            }
+        });
 
 
     }

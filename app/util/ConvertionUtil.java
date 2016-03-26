@@ -8,7 +8,9 @@ import aacj.model.Size;
 import aacj.util.AAConvTask;
 import aacj.util.AAUtil;
 import aacj.util.ImageUtil;
-import org.apache.xerces.impl.dv.util.Base64;
+
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -30,7 +32,7 @@ import aacj.gui.*;
  */
 public class ConvertionUtil {
     public static String aaConvertion(String base64) throws IOException{
-        byte[] decoded= Base64.decode(base64);
+        byte[] decoded= Base64.getDecoder().decode(base64.getBytes(StandardCharsets.UTF_8));
         InputStream in=new ByteArrayInputStream(decoded);
         BufferedImage bi= ImageIO.read(in);
         ConfigManager cm=genCM();

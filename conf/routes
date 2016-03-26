@@ -5,7 +5,8 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 GET     /hello                      controllers.HomeController.tst
-GET     /getAA/:base64              controllers.HomeController.getAA(base64:String)
+POST    /getAA              controllers.HomeController.getAA()
+POST    /send               controllers.HomeController.send()
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count

@@ -39,7 +39,12 @@ public class ApplicationTest {
         Content html = views.html.index.render("Your new application is ready.");
         assertEquals("text/html", html.contentType());
         assertTrue(html.body().contains("Your new application is ready."));
-    }
+    }/*
+    @Test
+    public void checkBase64(){
+        //String inp="abcdef";
+        //String oup=Base64.encode()
+    }*/
 
 
 }
