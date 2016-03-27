@@ -3,10 +3,11 @@ package controllers;
 import aacj.*;
 import aacj.util.AAUtil;
 import akka.stream.impl.fusing.GraphStages;
-import com.google.inject.Inject;
+import javax.inject.*;
 import play.Play;
 import play.api.*;
 import play.api.data.Form;
+import play.data.FormFactory;
 import play.mvc.Http.*;
 import play.*;
 
@@ -27,9 +28,7 @@ import java.util.Map;
  * to the application's home page.
  */
 public class HomeController extends Controller {
-    public static class FileForm{
-        public File picture;
-    }
+
     /**
      * An action that renders an HTML page with a welcome message.
      * The configuration in the <code>routes</code> file means that
@@ -37,7 +36,7 @@ public class HomeController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
-        return ok(index.render("you are already ready."));
+        return ok(index.render("ok~~~",""));
     }
     public Result send(){
         MultipartFormData body=request().body().asMultipartFormData();
@@ -49,7 +48,7 @@ public class HomeController extends Controller {
             file.renameTo(new File(
                     Play.application().path().getPath()+"/public/images/"
                     ,fileName)); //TODO should use DI
-            return ok("file uploaded");
+            return ok(index.render("file uploaded",fileName));
         }
         else{
             return badRequest();

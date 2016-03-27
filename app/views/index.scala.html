@@ -2,7 +2,7 @@
 * This template takes a single argument, a String containing a
 * message to display.
 *@
-@(message: String)
+@(message: String,imageName:String)
 @import helper._
 
 @*
@@ -16,5 +16,7 @@
         <input type="file" name="picture">
         <input type="submit">
     }
+    <p>uploaded image will be shown here</p>
+    <img src='@routes.Assets.versioned("images/"+imageName)' alt="">
 
 }
