@@ -12,7 +12,11 @@ libraryDependencies ++= Seq(
   javaWs,
   evolutions,
   "commons-codec" % "commons-codec" % "1.10",
-  "junit" % "junit" % "4.12"
+  "junit" % "junit" % "4.12",
+  "org.webjars" % "ace" % "1.1.3",
+  filters,
+  "org.webjars" % "bootstrap" % "3.3.6",
+  "org.webjars" % "jquery" % "2.1.4"
   //,
 //  "com.github.oguna" % "aacj" % "1.0.0"
 )

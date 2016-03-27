@@ -38,7 +38,7 @@ public class HomeController extends Controller {
      */
     public Result index() {
         Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
-        return ok(index.render("this is top page","",f));
+        return ok(index.render("this is top page","",f,""));
     }
 
     /**
@@ -55,13 +55,16 @@ public class HomeController extends Controller {
             String fileName = picture.getFilename();
             String contentType = picture.getContentType();
             File file = (File)picture.getFile();
+            /*
             file.renameTo(new File(
                     Play.application().path().getPath()+"/public/images/"
-                    ,fileName)); //TODO should use DI
-            return ok(index.render("file uploaded",fileName,f));
-        }
-        else{
-            return badRequest(index.render("please upload a picture","",f));
+                    ,fileName)); //TODO should use DI*/
+            try {
+                String aa = ConvertionUtil.aaConvertion(file);
+                return ok(index.render("image converted",fileName,f,aa));
+            }catch (IOException e) {
+                return badRequest(index.render("IO Exception","",f,""));
+            }
         }
         /*Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
         ConvertData data=f.get();
@@ -75,11 +78,12 @@ public class HomeController extends Controller {
                     f.fill(new ConvertData())));
         }
         return badRequest("please upload a picture");*/
+        return badRequest(index.render("picture is null","",f,""));
     }
     public  Result tst(){
         return ok("hello");
     }
-    @BodyParser.Of(Text10Kb.class)
+    /*@BodyParser.Of(Text10Kb.class)
     public Result getAA(){
         String method = request().method();
         if ("GET".equals(method)) {
@@ -94,7 +98,7 @@ public class HomeController extends Controller {
             return badRequest("an error occured while reading image");
         }
         return ok(tmp);
-    }
+    }*/
     public class Text10Kb extends BodyParser.FormUrlEncoded {
         @Inject
         public Text10Kb(HttpErrorHandler errorHandler) {

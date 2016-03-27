@@ -3,7 +3,8 @@
 * message to display.
 *@
 @import util.ConvertData
-@(message: String,imageName:String,aaConvertForm:Form[ConvertData])
+
+@(message: String,imageName:String,aaConvertForm:Form[ConvertData],AA:String)
 
 
 @*
@@ -19,5 +20,11 @@
     }
     <p>uploaded image will be shown here</p>
     <img src='@routes.Assets.versioned("images/"+imageName)' alt="">
+
+    <p>ascii art will be shown here</p>
+    <br>
+    <pre>
+    @AA
+    </pre>
 
 }

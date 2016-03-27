@@ -9,6 +9,7 @@ import aacj.util.AAConvTask;
 import aacj.util.AAUtil;
 import aacj.util.ImageUtil;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -31,10 +32,8 @@ import aacj.gui.*;
  * Created by s-sumi on 2016/03/25.
  */
 public class ConvertionUtil {
-    public static String aaConvertion(String base64) throws IOException{
-        byte[] decoded= Base64.getDecoder().decode(base64.getBytes(StandardCharsets.UTF_8));
-        InputStream in=new ByteArrayInputStream(decoded);
-        BufferedImage bi= ImageIO.read(in);
+    public static String aaConvertion(File file) throws IOException{
+        BufferedImage bi= ImageIO.read(file);
         ConfigManager cm=genCM();
         CharManager charm=new CharManager(cm);
         PixelTable tmp=img2LineImg(bi,cm);
@@ -71,6 +70,8 @@ public class ConvertionUtil {
 
         ConfigManager cm=new ConfigManager();
         cm.setConfig(tmp);
+        cm.fontName="MS Gothic";
+        cm.fontSize=9;
         return cm;
     }
     public static PixelTable img2LineImg(BufferedImage img,ConfigManager cm){

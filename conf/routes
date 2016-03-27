@@ -5,7 +5,7 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 GET     /hello                      controllers.HomeController.tst
-POST    /getAA              controllers.HomeController.getAA()
+#POST    /getAA              controllers.HomeController.getAA()
 POST    /send               controllers.HomeController.send()
 
 # An example controller showing how to use dependency injection
