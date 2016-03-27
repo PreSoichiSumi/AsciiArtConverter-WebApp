@@ -6,7 +6,7 @@
 GET     /                           controllers.HomeController.index
 GET     /hello                      controllers.HomeController.tst
 #POST    /getAA              controllers.HomeController.getAA()
-POST    /send               controllers.HomeController.send()
+POST    /               controllers.HomeController.send()
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count

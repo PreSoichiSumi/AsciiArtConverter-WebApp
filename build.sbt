@@ -22,7 +22,7 @@ libraryDependencies ++= Seq(
 )
 
 routesGenerator:=InjectedRoutesGenerator
-
+resolvers+="webjars" at "http://webjars.github.com/m2"
 
 
 //unmanagedSourceDirectories += project.in(file(".")).dependsOn(githubRepo)
