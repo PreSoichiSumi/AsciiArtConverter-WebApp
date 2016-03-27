@@ -2,8 +2,9 @@
 * This template takes a single argument, a String containing a
 * message to display.
 *@
-@(message: String,imageName:String)
-@import helper._
+@import util.ConvertData
+@(message: String,imageName:String,aaConvertForm:Form[ConvertData])
+
 
 @*
 * Call the the `main` template with two arguments. The first
@@ -12,8 +13,8 @@
 *@
 @main("AsciiArtConverter") {
     @message
-    @helper.form(action = routes.HomeController.send,'enctype->"multipart/form-data") {
-        <input type="file" name="picture">
+    @helper.form(action = routes.HomeController.send, 'enctype->"multipart/form-data") {
+        @helper.inputFile(aaConvertForm("picture"))
         <input type="submit">
     }
     <p>uploaded image will be shown here</p>

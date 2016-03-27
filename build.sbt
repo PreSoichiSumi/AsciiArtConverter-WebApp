@@ -11,7 +11,8 @@ libraryDependencies ++= Seq(
   cache,
   javaWs,
   evolutions,
-  "commons-codec" % "commons-codec" % "1.10"
+  "commons-codec" % "commons-codec" % "1.10",
+  "junit" % "junit" % "4.12"
   //,
 //  "com.github.oguna" % "aacj" % "1.0.0"
 )

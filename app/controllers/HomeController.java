@@ -5,8 +5,7 @@ import aacj.util.AAUtil;
 import akka.stream.impl.fusing.GraphStages;
 import javax.inject.*;
 import play.Play;
-import play.api.*;
-import play.api.data.Form;
+import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Http.*;
 import play.*;
@@ -14,6 +13,7 @@ import play.*;
 import play.http.HttpErrorHandler;
 import play.mvc.*;
 
+import util.ConvertData;
 import util.ConvertionUtil;
 import views.html.*;
 
@@ -28,7 +28,8 @@ import java.util.Map;
  * to the application's home page.
  */
 public class HomeController extends Controller {
-
+    @Inject
+    FormFactory formfactory;
     /**
      * An action that renders an HTML page with a welcome message.
      * The configuration in the <code>routes</code> file means that
@@ -36,9 +37,18 @@ public class HomeController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
-        return ok(index.render("ok~~~",""));
+        Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
+        return ok(index.render("this is top page","",f));
     }
+
+    /**
+     * ファイルはフォームデータの一部として送られてこない．
+     * フォームのデータに添付されて送られてくる．
+     * http://stackoverflow.com/questions/9452375/how-to-get-the-upload-file-with-other-inputs-in-play2#9587052
+     * @return
+     */
     public Result send(){
+        Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
         MultipartFormData body=request().body().asMultipartFormData();
         MultipartFormData.FilePart picture=body.getFile("picture");
         if(picture!=null){
@@ -48,12 +58,23 @@ public class HomeController extends Controller {
             file.renameTo(new File(
                     Play.application().path().getPath()+"/public/images/"
                     ,fileName)); //TODO should use DI
-            return ok(index.render("file uploaded",fileName));
+            return ok(index.render("file uploaded",fileName,f));
         }
         else{
-            return badRequest();
+            return badRequest(index.render("please upload a picture","",f));
         }
-
+        /*Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
+        ConvertData data=f.get();
+        if(data.getPicture()!=null && isPicture(data.getPicture())){
+            File file=data.getPicture();
+            file.renameTo(new File(
+                    Play.application().path().getPath()+"/public/images/"
+                    ,file.getName()));
+            ok(index.render("your file is successfully uploaded.",
+                    file.getName(),
+                    f.fill(new ConvertData())));
+        }
+        return badRequest("please upload a picture");*/
     }
     public  Result tst(){
         return ok("hello");
@@ -80,6 +101,12 @@ public class HomeController extends Controller {
             super(1 * 1024 *1024, errorHandler);
         }
     }
-
+    public boolean isPicture(File file){
+        String ext=file.getName().substring(file.getName().lastIndexOf(".")+1);
+        if(file.isFile() &&(
+                ext.equals("png") || ext.equals("jpeg") ||ext.equals("jpg")) )
+            return true;
+        return false;
+    }
 
 }
