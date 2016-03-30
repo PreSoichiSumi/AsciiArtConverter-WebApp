@@ -70,7 +70,18 @@ public class ConvertionUtil {
 
         ConfigManager cm=new ConfigManager();
         cm.setConfig(tmp);
-        cm.fontName="MS Gothic";
+
+        //TODO もっと単純に書ける
+        //http://stackoverflow.com/questions/228477/how-do-i-programmatically-determine-operating-system-in-java
+        String OS_NAME= System.getProperty("os.name").toLowerCase();
+        if(OS_NAME.startsWith("windows")){
+            cm.fontName="MS Gothic";
+        }else if(OS_NAME.startsWith("linux")){
+            cm.fontName="monospace";
+        }else{
+            cm.fontName="Arial";
+        }
+
         cm.fontSize=9;
         return cm;
     }
