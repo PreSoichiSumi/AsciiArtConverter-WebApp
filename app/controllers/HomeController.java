@@ -30,6 +30,8 @@ import java.util.Map;
 public class HomeController extends Controller {
     @Inject
     FormFactory formfactory;
+    @Inject
+    WebJarAssets webJarAssets;
     /**
      * An action that renders an HTML page with a welcome message.
      * The configuration in the <code>routes</code> file means that
@@ -38,7 +40,7 @@ public class HomeController extends Controller {
      */
     public Result index() {
         Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
-        return ok(index.render("this is top page","",f,""));
+        return ok(index.render("this is top page","",f,"",webJarAssets));
     }
 
     /**
@@ -61,9 +63,9 @@ public class HomeController extends Controller {
                     ,fileName)); //TODO should use DI*/
             try {
                 String aa = ConvertionUtil.aaConvertion(file);
-                return ok(index.render("image converted",fileName,f,aa));
+                return ok(index.render("image converted",fileName,f,aa,webJarAssets));
             }catch (IOException e) {
-                return badRequest(index.render("IO Exception","",f,""));
+                return badRequest(index.render("IO Exception","",f,"",webJarAssets));
             }
         }
         /*Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
@@ -78,7 +80,7 @@ public class HomeController extends Controller {
                     f.fill(new ConvertData())));
         }
         return badRequest("please upload a picture");*/
-        return badRequest(index.render("picture is null","",f,""));
+        return badRequest(index.render("picture is null","",f,"",webJarAssets));
     }
     public  Result tst(){
         return ok("hello");
