@@ -4,7 +4,7 @@
 *@
 @import util.ConvertData
 
-@(message: String,imageName:String,aaConvertForm:Form[ConvertData],AA:String,webJarAssets: WebJarAssets)
+@(message: String,imageName:String,AA:String,webJarAssets: WebJarAssets)
 
 
 @*
@@ -14,10 +14,11 @@
 *@
 @main("AsciiArtConverter",webJarAssets) {
     @message
-    @helper.form(action = routes.HomeController.send, 'enctype->"multipart/form-data") {
-        @helper.inputFile(aaConvertForm("picture"))
-        <input type="submit">
-    }
+
+    <form id="settingForm"  method="post" action="">
+        <input type="file" name="picture" id="sendFile"/>
+        <input type="submit" id="submit" value="送信" accept="image/*">
+    </form>
     <!--
     <p>uploaded image will be shown here</p>
     <img src='@routes.Assets.versioned("images/"+imageName)' alt="">-->
@@ -38,9 +39,7 @@
 
     <div id="editor" style="height: 600px"></div>
     <script src='@routes.Assets.versioned("javascripts/ace-setting.js")'></script>
-    <pre id="aa" style='display:none'>
-    @AA
-    </pre>
+    <script src="@routes.Assets.versioned("javascripts/aaconvert.js")"></script>
 
 
 }

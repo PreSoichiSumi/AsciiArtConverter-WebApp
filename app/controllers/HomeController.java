@@ -4,15 +4,23 @@ import aacj.*;
 import aacj.util.AAUtil;
 import akka.stream.impl.fusing.GraphStages;
 import javax.inject.*;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import play.Play;
 import play.data.Form;
 import play.data.FormFactory;
+import play.libs.Json;
 import play.mvc.Http.*;
 import play.*;
 
 import play.http.HttpErrorHandler;
 import play.mvc.*;
 
+import play.twirl.api.Content;
+import scala.util.parsing.json.JSON;
 import util.ConvertData;
 import util.ConvertionUtil;
 import views.html.*;
@@ -40,7 +48,7 @@ public class HomeController extends Controller {
      */
     public Result index() {
         Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
-        return ok(index.render("this is top page","",f,"",webJarAssets));
+        return ok(index.render("this is top page","","",webJarAssets));
     }
 
     /**
@@ -49,23 +57,20 @@ public class HomeController extends Controller {
      * http://stackoverflow.com/questions/9452375/how-to-get-the-upload-file-with-other-inputs-in-play2#9587052
      * @return
      */
-    public Result send(){
-        Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
-        MultipartFormData body=request().body().asMultipartFormData();
-        MultipartFormData.FilePart picture=body.getFile("picture");
+    public Result aaConvert(){
+        MultipartFormData.FilePart picture=request().body().asMultipartFormData().getFile("picture");
         if(picture!=null){
             String fileName = picture.getFilename();
             String contentType = picture.getContentType();
             File file = (File)picture.getFile();
-            /*
-            file.renameTo(new File(
-                    Play.application().path().getPath()+"/public/images/"
-                    ,fileName)); //TODO should use DI*/
+
             try {
                 String aa = ConvertionUtil.aaConvertion(file);
-                return ok(index.render("image converted",fileName,f,aa,webJarAssets));
+                ObjectNode result= Json.newObject();
+                result.put("aa",aa);
+                return ok(result);
             }catch (IOException e) {
-                return badRequest(index.render("IO Exception","",f,"",webJarAssets));
+                return badRequest("invalid request");
             }
         }
         /*Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
@@ -80,7 +85,7 @@ public class HomeController extends Controller {
                     f.fill(new ConvertData())));
         }
         return badRequest("please upload a picture");*/
-        return badRequest(index.render("picture is null","",f,"",webJarAssets));
+        return badRequest("picture is null");
     }
     public  Result tst(){
         return ok("hello");

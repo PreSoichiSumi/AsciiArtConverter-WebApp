@@ -5,12 +5,6 @@ var editor = ace.edit("editor");
 editor.$blockScrolling = Infinity;
 editor.setTheme("ace/theme/monokai");
 editor.getSession().setMode("ace/mode/text");
-$(document).ready(function () {
-    var tmp=document.getElementById('aa').textContent;
-    if(tmp != ""){
-        editor.setValue(tmp);
-    }
-})
 
 $('#font-size').click(function(e) {
     editor.setFontSize($(e.target).data('size'));
