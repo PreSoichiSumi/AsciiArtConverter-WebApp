@@ -28,35 +28,16 @@
         <div class="btn-group">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i> <span class="caret"></span></button>
             <ul class="dropdown-menu" id="font-size">
-                <li><a href="#" data-size="10">小さい</a></li>
-                <li><a href="#" data-size="12">普通</a></li>
-                <li><a href="#" data-size="14">大きい</a></li>
+                <li><a href="#" data-size="8">小さい</a></li>
+                <li><a href="#" data-size="16">普通</a></li>
+                <li><a href="#" data-size="24">大きい</a></li>
             </ul>
         </div>
         <button id="save" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
     </div>
 
     <div id="editor" style="height: 600px"></div>
-    <script>
-            var editor = ace.edit("editor");
-            editor.$blockScrolling = Infinity;
-            editor.setTheme("ace/theme/monokai");
-            editor.getSession().setMode("ace/mode/text");
-            $(document).ready(function () {
-                var tmp=document.getElementById('aa').textContent;
-                if(tmp != ""){
-                       editor.setValue(tmp);
-                }
-            })
-
-            $('#font-size').click(function(e) {
-                editor.setFontSize($(e.target).data('size'));
-            });
-            $('#save').click(function(e) {
-                localStorage.text = editor.getValue();
-                alert("保存しました。");
-            });
-    </script>
+    <script src='@routes.Assets.versioned("javascripts/ace-setting.js")'></script>
     <pre id="aa" style='display:none'>
     @AA
     </pre>
