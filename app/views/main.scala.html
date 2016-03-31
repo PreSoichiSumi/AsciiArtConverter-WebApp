@@ -4,7 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@import org.webjars.WebJarAssetLocator
+
 @(title: String,webJarAssets: WebJarAssets)(content: Html)
 
 <!DOCTYPE html>
@@ -25,8 +25,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.css">
         <link rel="stylesheet" href='@routes.WebJarAssets.at(webJarAssets.locate("css/bootstrap.min.css"))'>
         <!--<link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/narrow-jumbotron.css")'>-->
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
         <script src='@routes.WebJarAssets.at(webJarAssets.locate("jquery.min.js"))'></script>
+        <script src='@routes.WebJarAssets.at(webJarAssets.locate("bootstrap.min.js"))'></script>
+
 
     </head>
 
@@ -64,6 +66,5 @@
                 <p>&copy; Team-BAKURETSU 2016</p>
             </footer>
         </div>
-
     </body>
 </html>
