@@ -54,7 +54,7 @@ public class ConvertionUtil {
         tmp.put("match","2");
         tmp.put("score1","80");
         tmp.put("score2","100");
-        tmp.put("multi","false");
+        tmp.put("multi","true");
         tmp.put("matchCnt","1");
         tmp.put("charSet","2");
         tmp.put("tone","false");

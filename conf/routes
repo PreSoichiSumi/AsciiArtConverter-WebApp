@@ -4,9 +4,7 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
-GET     /hello                      controllers.HomeController.tst
-#POST    /getAA              controllers.HomeController.getAA()
-POST    /               controllers.HomeController.aaConvert()
+POST    /                           controllers.HomeController.aaConvert()
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count

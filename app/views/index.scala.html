@@ -4,7 +4,7 @@
 *@
 @import util.ConvertData
 
-@(message: String,imageName:String,AA:String,webJarAssets: WebJarAssets)
+@(message: String,webJarAssets: WebJarAssets)
 
 
 @*
@@ -19,9 +19,6 @@
         <input type="file" name="picture" id="sendFile"/>
         <input type="submit" id="submit" value="送信" accept="image/*">
     </form>
-    <!--
-    <p>uploaded image will be shown here</p>
-    <img src='@routes.Assets.versioned("images/"+imageName)' alt="">-->
 
     <p>ascii art will be shown here</p>
     <br>

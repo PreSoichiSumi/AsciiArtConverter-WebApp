@@ -48,7 +48,7 @@ public class HomeController extends Controller {
      */
     public Result index() {
         Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
-        return ok(index.render("this is top page","","",webJarAssets));
+        return ok(index.render("this is top page",webJarAssets));
     }
 
     /**
@@ -73,45 +73,9 @@ public class HomeController extends Controller {
                 return badRequest("invalid request");
             }
         }
-        /*Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
-        ConvertData data=f.get();
-        if(data.getPicture()!=null && isPicture(data.getPicture())){
-            File file=data.getPicture();
-            file.renameTo(new File(
-                    Play.application().path().getPath()+"/public/images/"
-                    ,file.getName()));
-            ok(index.render("your file is successfully uploaded.",
-                    file.getName(),
-                    f.fill(new ConvertData())));
-        }
-        return badRequest("please upload a picture");*/
         return badRequest("picture is null");
     }
-    public  Result tst(){
-        return ok("hello");
-    }
-    /*@BodyParser.Of(Text10Kb.class)
-    public Result getAA(){
-        String method = request().method();
-        if ("GET".equals(method)) {
-            return badRequest();
-        }
-        Map<String, String[]> form = request().body().asFormUrlEncoded();
-        String base64 = form.get("base64")[0];
-        String tmp;
-        try {
-            tmp = ConvertionUtil.aaConvertion(base64);
-        }catch (IOException e){
-            return badRequest("an error occured while reading image");
-        }
-        return ok(tmp);
-    }*/
-    public class Text10Kb extends BodyParser.FormUrlEncoded {
-        @Inject
-        public Text10Kb(HttpErrorHandler errorHandler) {
-            super(1 * 1024 *1024, errorHandler);
-        }
-    }
+
     public boolean isPicture(File file){
         String ext=file.getName().substring(file.getName().lastIndexOf(".")+1);
         if(file.isFile() &&(
