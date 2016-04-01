@@ -20,7 +20,7 @@ libraryDependencies ++= Seq(
   filters,
   "org.webjars" % "bootstrap" % "3.3.6",
   "org.webjars" % "jquery" % "2.2.2",
-  "com.google.code.gson" % "gson" % "2.2"
+  "org.webjars.bower" % "bootstrap-fileinput" % "4.3.1"
   //,
 //  "com.github.oguna" % "aacj" % "1.0.0"
 )

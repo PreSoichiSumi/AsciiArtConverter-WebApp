@@ -19,7 +19,18 @@
         <input type="file" name="picture" id="sendFile"/>
         <input type="submit" id="submit" value="送信" accept="image/*">
     </form>
-
+    <label class="control-label">Select File</label>
+    <input id="input-20" type="file" class="file-loading">
+    <script>
+            $(document).on('ready', function() {
+                $("#input-20").fileinput({
+                    browseClass: "btn btn-primary btn-block",
+                    showCaption: false,
+                    showRemove: false,
+                    showUpload: false
+                });
+            });
+    </script>
     <p>ascii art will be shown here</p>
     <br>
     <div class="btn-group">
@@ -37,6 +48,6 @@
     <div id="editor" style="height: 600px"></div>
     <script src='@routes.Assets.versioned("javascripts/ace-setting.js")'></script>
     <script src="@routes.Assets.versioned("javascripts/aaconvert.js")"></script>
-
-
+    <script src='@routes.WebJarAssets.at(webJarAssets.locate("fileinput.min.js"))'></script>
+    <script src='@routes.WebJarAssets.at(webJarAssets.locate("canvas-to-blob.min.js"))'></script>
 }
