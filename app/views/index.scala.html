@@ -15,22 +15,100 @@
 @main("AsciiArtConverter",webJarAssets) {
     @message
 
-    <form id="settingForm"  method="post" action="">
-        <input type="file" name="picture" id="sendFile"/>
-        <input type="submit" id="submit" value="送信" accept="image/*">
-    </form>
-    <label class="control-label">Select File</label>
-    <input id="input-20" type="file" class="file-loading">
-    <script>
-            $(document).on('ready', function() {
-                $("#input-20").fileinput({
-                    browseClass: "btn btn-primary btn-block",
-                    showCaption: false,
-                    showRemove: false,
-                    showUpload: false
-                });
-            });
-    </script>
+
+    <div class="row">
+        <form id="settingForm"  method="post" action="">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="control-label">Select File</label>
+                    <input id="input-20" type="file" name="picture" class="file-loading"> <!--nameがjsonのキーになる-->
+                </div>
+                <div class="col-md-9">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        輪郭抽出設定</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label for="select">画像サイズ</label>
+                                        <select class="form-control" id="sel1">
+                                            <option value="NORESIZE">変更しない</option>
+                                            <option value="RESIZE1">640x480</option>
+                                            <option value="RESIZE2">800x600</option>
+                                            <option value="RESIZE3">960x540</option>
+                                            <option value="RESIZE4">1024x720</option>
+                                            <option value="RESIZE5">1280x768</option>
+                                            <option value="RESIZE6">1920x1080</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+
+                                    <b>輪郭抽出精度 </b>
+                                    <input id="slider" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+                                    <span id="sliderText">Current Slider Value: <span id="sliderVal">50</span></span>
+
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label for="select">抽出比較範囲</label>
+                                        <select class="form-control" id="sel2">
+                                            <option value="3">3x3</option>
+                                            <option value="5">5x5</option>
+                                            <option value="7">7x7</option>
+                                            <option value="9">9x9</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                        AA変換設定</a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <b>フォント</b>
+                                    <label class="radio-inline"><input type="radio" id="radio1" name="optradio">Monospaced</label>
+                                    <label class="radio-inline"><input type="radio" id="radio2" name="optradio">Proportional</label>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="checkbox">
+                                        <b>トーン処理</b>
+                                        <label><input type="checkbox" value="">Option 1</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                        AA変換設定2
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse">
+                                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                    commodo consequat.
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
     <p>ascii art will be shown here</p>
     <br>
     <div class="btn-group">
@@ -50,4 +128,6 @@
     <script src="@routes.Assets.versioned("javascripts/aaconvert.js")"></script>
     <script src='@routes.WebJarAssets.at(webJarAssets.locate("fileinput.min.js"))'></script>
     <script src='@routes.WebJarAssets.at(webJarAssets.locate("canvas-to-blob.min.js"))'></script>
+    <script src='@routes.Assets.versioned("javascripts/input-setting.js")'></script>
+    <script src='@routes.Assets.versioned("javascripts/slider-setting.js")'></script>
 }

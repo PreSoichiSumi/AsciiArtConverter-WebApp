@@ -3,5 +3,5 @@
  */
 $("#slider").slider();
 $("#slider").on("slide", function(slideEvt) {
-    $("#accuracy").text(slideEvt.value);
+    $("#sliderVal").text(slideEvt.value);
 });

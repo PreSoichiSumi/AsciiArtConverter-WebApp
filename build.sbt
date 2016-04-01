@@ -7,7 +7,8 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava)
 scalaVersion := "2.11.7"
 unmanagedBase := baseDirectory.value / "lib"
 
-//キャッシュが残るのでバージョン変更時はactivator clean
+//キャッシュが残るのでバージョン変更時は
+// activator clean-> activator run
 libraryDependencies ++= Seq(
   javaJdbc,
   cache,
@@ -20,7 +21,8 @@ libraryDependencies ++= Seq(
   filters,
   "org.webjars" % "bootstrap" % "3.3.6",
   "org.webjars" % "jquery" % "2.2.2",
-  "org.webjars.bower" % "bootstrap-fileinput" % "4.3.1"
+  "org.webjars.bower" % "bootstrap-fileinput" % "4.3.1",
+  "org.webjars" % "bootstrap-slider" % "5.3.1"
   //,
 //  "com.github.oguna" % "aacj" % "1.0.0"
 )

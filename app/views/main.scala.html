@@ -19,10 +19,8 @@
 
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
 
-        @* Here's where we render the page title `String`. *@
         <title>@title</title>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.css">
+        <link rel="stylesheet" href='@routes.WebJarAssets.at(webJarAssets.locate("bootstrap-slider.min.css"))'>
         <link rel="stylesheet" href='@routes.WebJarAssets.at(webJarAssets.locate("3.3.6/css/bootstrap.min.css"))'>
         <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/narrow-jumbotron.css")'>
         <link rel="stylesheet" href='@routes.WebJarAssets.at(webJarAssets.locate("css/fileinput.min.css"))'>
@@ -34,6 +32,7 @@
             <project-root>/target/web/web-modules/main/webjars/lib/<library-name> 以下を見て決める-->
         <script src='@routes.WebJarAssets.at(webJarAssets.locate("2.2.2/jquery.min.js"))'></script>
         <script src='@routes.WebJarAssets.at(webJarAssets.locate("3.3.6/js/bootstrap.min.js"))'></script>
+        <script src='@routes.WebJarAssets.at(webJarAssets.locate("bootstrap-slider.min.js"))'></script>
 
 
     </head>
@@ -41,7 +40,7 @@
     <body>
         @* And here's where we render the `Html` object containing
          * the page content. *@
-        <div class="container-fluid wide">
+        <div class="container-fluid">
             <div class="header clearfix">
 
                 <nav>
