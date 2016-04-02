@@ -56,7 +56,7 @@ public class HomeController extends Controller {
      */
     public Result aaConvert(){
         MultipartFormData.FilePart picture=request().body().asMultipartFormData().getFile("picture");
-
+        Map<String,String[]> form= request().body().asMultipartFormData().asFormUrlEncoded();//checkboxは値がないときにはmapに要素すら無いので注意
         if(picture!=null){
             String fileName = picture.getFilename();
             String contentType = picture.getContentType();

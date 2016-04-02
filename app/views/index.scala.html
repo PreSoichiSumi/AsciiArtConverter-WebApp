@@ -36,7 +36,7 @@
                                 <div class="panel-body">
                                     <div class="form-group">
                                         <label for="select">画像サイズ</label>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel1" name="sel1">
                                             <option value="NORESIZE">変更しない</option>
                                             <option value="RESIZE1">640x480</option>
                                             <option value="RESIZE2">800x600</option>
@@ -50,14 +50,14 @@
                                 <div class="panel-body">
 
                                     <b>輪郭抽出精度 </b>
-                                    <input id="slider" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
+                                    <input id="slider" name="slider" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
                                     <span id="sliderText">Current Slider Value: <span id="sliderVal">50</span></span>
 
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group">
                                         <label for="select">抽出比較範囲</label>
-                                        <select class="form-control" id="sel2">
+                                        <select class="form-control" id="sel2" name="sel2">
                                             <option value="3">3x3</option>
                                             <option value="5">5x5</option>
                                             <option value="7">7x7</option>
@@ -77,13 +77,13 @@
                             <div id="collapse2" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <b>フォント</b>
-                                    <label class="radio-inline"><input type="radio" id="radio1" name="optradio">Monospaced</label>
-                                    <label class="radio-inline"><input type="radio" id="radio2" name="optradio">Proportional</label>
+                                    <label class="radio-inline"><input type="radio" id="radio1" name="font" checked="checked" value="monospaced">Monospaced</label>
+                                    <label class="radio-inline"><input type="radio" id="radio2" name="font" value="proportional">Proportional</label>
                                 </div>
                                 <div class="panel-body">
                                     <div class="checkbox">
                                         <b>トーン処理</b>
-                                        <label><input type="checkbox" value="">Option 1</label>
+                                        <label><input type="checkbox" name="tone" value="true">トーン処理を行う</label>
                                     </div>
                                 </div>
                             </div>
