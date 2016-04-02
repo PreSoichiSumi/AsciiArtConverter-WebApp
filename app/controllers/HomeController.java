@@ -56,6 +56,7 @@ public class HomeController extends Controller {
      */
     public Result aaConvert(){
         MultipartFormData.FilePart picture=request().body().asMultipartFormData().getFile("picture");
+
         if(picture!=null){
             String fileName = picture.getFilename();
             String contentType = picture.getContentType();
