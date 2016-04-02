@@ -1,34 +1,16 @@
 package controllers;
 
-import aacj.*;
-import aacj.util.AAUtil;
-import akka.stream.impl.fusing.GraphStages;
-import javax.inject.*;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import play.Play;
-import play.data.Form;
-import play.data.FormFactory;
 import play.libs.Json;
-import play.mvc.Http.*;
-import play.*;
-
-import play.http.HttpErrorHandler;
-import play.mvc.*;
-
-import play.twirl.api.Content;
-import scala.util.parsing.json.JSON;
-import util.ConvertData;
+import play.mvc.Controller;
+import play.mvc.Http.MultipartFormData;
+import play.mvc.Result;
 import util.ConvertionUtil;
-import views.html.*;
+import views.html.index;
 
-import javax.imageio.ImageIO;
+import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
-import java.util.Base64;
 import java.util.Map;
 
 /**
@@ -56,14 +38,12 @@ public class HomeController extends Controller {
      */
     public Result aaConvert(){
         MultipartFormData.FilePart picture=request().body().asMultipartFormData().getFile("picture");
-        Map<String,String[]> form= request().body().asMultipartFormData().asFormUrlEncoded();//checkboxは値がないときにはmapに要素すら無いので注意
+        Map<String,String[]> form= request().body(). asMultipartFormData().asFormUrlEncoded();//checkboxは値がないときにはmapに要素すら無いので注意
         if(picture!=null){
-            String fileName = picture.getFilename();
-            String contentType = picture.getContentType();
             File file = (File)picture.getFile();
 
             try {
-                String aa = ConvertionUtil.aaConvertion(file);
+                String aa = ConvertionUtil.aaConvertion(file,form);
                 ObjectNode result= Json.newObject();
                 result.put("aa",aa);
                 return ok(result);

@@ -6,19 +6,12 @@ import aacj.model.CharTable;
 import aacj.model.PixelTable;
 import aacj.model.Size;
 import aacj.util.AAConvTask;
-import aacj.util.AAUtil;
 import aacj.util.ImageUtil;
 
-import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
-
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,28 +20,68 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import aacj.gui.*;
+
 /**
  * Created by s-sumi on 2016/03/25.
  */
 public class ConvertionUtil {
-    public static String aaConvertion(File file) throws IOException{
+    public static String aaConvertion(File file,Map<String,String[]> form) throws IOException{
         BufferedImage bi= ImageIO.read(file);
-        ConfigManager cm=genCM();
+        ConfigManager cm = generateConfigManager(form);
         CharManager charm=new CharManager(cm);
         PixelTable tmp=img2LineImg(bi,cm);
         return lineImg2AA(tmp.data,tmp.width,tmp.height,charm,cm)[0];
     }
-    public static ConfigManager genCM(){
+    public static ConfigManager generateConfigManager(Map<String,String[]> form){
+        final int INDEX=6;
         Map<String,String> tmp=new HashMap<>();
-        tmp.put("sizeType","0");
-        tmp.put("sizeImage_w","0");
-        tmp.put("sizeImage_h","0");
-        tmp.put("accuracy","50");
-        tmp.put("lapRange","9");
+        if(form.get("sel1")[0].equals("NORESIZE")) {
+            tmp.put("sizeType", "0");
+            tmp.put("sizeImage_w", "0");
+            tmp.put("sizeImage_h", "0");
+        }else{
+            String num=form.get("sel1")[0].substring(INDEX);//substring->NOTNULL
+
+            if(num.equals(""))
+                throw new RuntimeException();
+            tmp.put("sizeType",num);
+
+            String w,h;
+            switch (num){
+                case "1":
+                    w="640";
+                    h="480";
+                    break;
+                case "2":
+                    w="800";
+                    h="600";
+                    break;
+                case "3":
+                    w="960";
+                    h="640";
+                    break;
+                case "4":
+                    w="1024";
+                    h="768";
+                    break;
+                case "5":
+                    w="1280";
+                    h="960";
+                    break;
+                case "6":
+                    w="1920";
+                    h="1080";
+                    break;
+                default:
+                    throw new RuntimeException("switch-default");
+            }
+            tmp.put("sizeImage_w",w);
+            tmp.put("sizeImage_h",h);
+        }
+        tmp.put("accuracy",form.get("slider")[0]);
+        tmp.put("lapRange",form.get("sel2")[0]);
         tmp.put("noiseLen","20");
         tmp.put("connectRange","1");
-        tmp.put("fontName","MS Gothic");
         tmp.put("fontSize","9");
         tmp.put("pitch","0");
         tmp.put("match","2");
@@ -71,21 +104,26 @@ public class ConvertionUtil {
         ConfigManager cm=new ConfigManager();
         cm.setConfig(tmp);
 
-        //TODO もっと単純に書ける
+
         //http://stackoverflow.com/questions/228477/how-do-i-programmatically-determine-operating-system-in-java
-        String OS_NAME= System.getProperty("os.name").toLowerCase();
+        /*String OS_NAME= System.getProperty("os.name").toLowerCase();
         if(OS_NAME.startsWith("windows")){
             cm.fontName="MS Gothic";
         }else if(OS_NAME.startsWith("linux")){
-            cm.fontName="monospace";
+            cm.fontName="Monospaced";
         }else{
             cm.fontName="Arial";
+        }*/
+        if(form.get("font")[0].equals("monospaced")){
+            cm.fontName="Monospaced";
+        }else{
+            cm.fontName="SansSerif";
         }
 
         cm.fontSize=9;
         return cm;
     }
-    public static PixelTable img2LineImg(BufferedImage img,ConfigManager cm){
+    private static PixelTable img2LineImg(BufferedImage img, ConfigManager cm){
         int w=img.getWidth();
         int h=img.getHeight();
         if (cm.sizeType != ConfigManager.SizeType.NoResize) {
@@ -96,10 +134,9 @@ public class ConvertionUtil {
         PixelTable zoomedImg= ImageUtil.zoomImage(rawImg,new Size(w,h),false);
         PixelTable lineImg= ImageUtil.getLineImage(zoomedImg,
                 cm.accuracy,cm.lapRange,cm.noiseLen,cm.connectRange,cm);
-        PixelTable lapImg=ImageUtil.zoomImage(lineImg,new Size(w,h),true);
-        return lapImg;
+        return ImageUtil.zoomImage(lineImg,new Size(w,h),true);
     }
-    public static String[] lineImg2AA(int[] bmp,int width,int height,CharManager charm,ConfigManager cm){
+    private static String[] lineImg2AA(int[] bmp, int width, int height, CharManager charm, ConfigManager cm){
         CharTable table = getTable(bmp, width, height);  //2値化画像取得？
         CharTable toneTable = getToneTable(bmp, width, height, cm);    //トーン用
 
@@ -165,7 +202,7 @@ public class ConvertionUtil {
         return new String[] { sbAA.toString(), sbAAType.toString() };
     }
 
-    public static CharTable trimTable(CharTable table, int top, int left, int height, int width, int margin) {
+    private static CharTable trimTable(CharTable table, int top, int left, int height, int width, int margin) {
         //上下左右に1ピクセルの余白が必要なので+2
         CharTable subTable = new CharTable(width + margin * 2, height + margin * 2);
         for (int y = 0; y < subTable.height; y++) {
@@ -181,7 +218,7 @@ public class ConvertionUtil {
         return subTable;
     }
 
-    static CharTable getTable(int[] bmp, int width, int height) {
+    private static CharTable getTable(int[] bmp, int width, int height) {
         CharTable table = new CharTable(width, height);
         for (int y = 0; y<table.height; y++) {
             for (int x = 0; x < table.width; x++) {
@@ -195,7 +232,7 @@ public class ConvertionUtil {
         return table;
     }
 
-    static CharTable getToneTable(int[] bmp, int width, int height, ConfigManager cm)
+    private static CharTable getToneTable(int[] bmp, int width, int height, ConfigManager cm)
     {
         CharTable table = new CharTable(width, height);
         int val = 200 / cm.toneTxt.length;
