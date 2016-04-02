@@ -37,8 +37,6 @@ import java.util.Map;
  */
 public class HomeController extends Controller {
     @Inject
-    FormFactory formfactory;
-    @Inject
     WebJarAssets webJarAssets;
     /**
      * An action that renders an HTML page with a welcome message.
@@ -47,7 +45,6 @@ public class HomeController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
-        Form<ConvertData> f=formfactory.form(ConvertData.class).bindFromRequest();
         return ok(index.render("this is top page",webJarAssets));
     }
 
