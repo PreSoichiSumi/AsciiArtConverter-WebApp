@@ -91,7 +91,11 @@ public class ConvertionUtil {
         tmp.put("multi","true");
         tmp.put("matchCnt","1");
         tmp.put("charSet","2");
-        tmp.put("tone","false");
+        if(form.containsKey("tone")){
+            tmp.put("tone","true");
+        }else {
+            tmp.put("tone", "false");
+        }
         tmp.put("reversal","false");
         tmp.put("toneValue","220");
         tmp.put("toneTxt",":＠: ＠:  ＠. ");
