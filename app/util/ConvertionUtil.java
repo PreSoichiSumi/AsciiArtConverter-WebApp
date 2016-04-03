@@ -44,7 +44,7 @@ public class ConvertionUtil {
 
             if(num.equals(""))
                 throw new RuntimeException();
-            tmp.put("sizeType",num);
+            tmp.put("sizeType","1");
 
             String w,h;
             switch (num){
@@ -82,6 +82,7 @@ public class ConvertionUtil {
         tmp.put("lapRange",form.get("sel2")[0]);
         tmp.put("noiseLen","20");
         tmp.put("connectRange","1");
+        tmp.put("fontName","MS Gothic");
         tmp.put("fontSize","9");
         tmp.put("pitch","0");
         tmp.put("match","2");
@@ -115,7 +116,7 @@ public class ConvertionUtil {
             cm.fontName="Arial";
         }*/
         if(form.get("font")[0].equals("monospaced")){
-            cm.fontName="Monospaced";
+            cm.fontName="monospace";
         }else{
             cm.fontName="SansSerif";
         }
