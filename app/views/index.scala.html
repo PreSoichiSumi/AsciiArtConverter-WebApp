@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <label class="control-label">Select File</label>
-                    <input id="input-20" type="file" name="picture" class="file-loading"> <!--nameがjsonのキーになる-->
+                    <input id="input-20" type="file" name="picture" class="file-loading" accept="image/*"> <!--nameがjsonのキーになる-->
                 </div>
                 <div class="col-md-9">
                     <div class="panel-group" id="accordion">
@@ -109,6 +109,9 @@
             <buttun id="submit" class="btn btn-primary">変換</buttun>
         </form>
     </div>
+    <div class="row" id="dispimg"></div>
+    <div class="row" id="normalImg"></div>
+    <div class="row" id="zoomedImg"></div>
     <p>ascii art will be shown here</p>
     <br>
     <div class="btn-group">
@@ -130,4 +133,5 @@
     <script src='@routes.WebJarAssets.at(webJarAssets.locate("canvas-to-blob.min.js"))'></script>
     <script src='@routes.Assets.versioned("javascripts/input-setting.js")'></script>
     <script src='@routes.Assets.versioned("javascripts/slider-setting.js")'></script>
+    <script src='@routes.Assets.versioned("javascripts/laplacian.js")'></script>
 }
