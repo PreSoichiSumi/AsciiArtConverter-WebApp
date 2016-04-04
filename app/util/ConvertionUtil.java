@@ -110,20 +110,27 @@ public class ConvertionUtil {
         cm.setConfig(tmp);
 
 
-        //http://stackoverflow.com/questions/228477/how-do-i-programmatically-determine-operating-system-in-java
-        /*String OS_NAME= System.getProperty("os.name").toLowerCase();
+        //http://stackoverflow.com/questions/228477/how-do-i-programmatically
+        // -determine-operating-system-in-java
+
+        //http://www.mltlab.com/wp/archives/67
+        String OS_NAME= System.getProperty("os.name").toLowerCase();
         if(OS_NAME.startsWith("windows")){
-            cm.fontName="MS Gothic";
+            if(form.get("font")[0].equals("monospaced")){
+                cm.fontName="MS Gothic";
+            }else{
+                cm.fontName="MS PGothic";
+            }
         }else if(OS_NAME.startsWith("linux")){
-            cm.fontName="Monospaced";
+            if(form.get("font")[0].equals("monospaced")){
+                cm.fontName="monospaced";
+            }else{
+                cm.fontName="SansSerif";
+            }
         }else{
             cm.fontName="Arial";
-        }*/
-        if(form.get("font")[0].equals("monospaced")){
-            cm.fontName="monospace";
-        }else{
-            cm.fontName="SansSerif";
         }
+
 
         cm.fontSize=9;
         return cm;
