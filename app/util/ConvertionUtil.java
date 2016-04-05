@@ -7,6 +7,7 @@ import aacj.model.PixelTable;
 import aacj.model.Size;
 import aacj.util.AAConvTask;
 import aacj.util.ImageUtil;
+import play.data.DynamicForm;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -25,22 +26,22 @@ import java.util.concurrent.Future;
  * Created by s-sumi on 2016/03/25.
  */
 public class ConvertionUtil {
-    public static String aaConvertion(File file,Map<String,String[]> form) throws IOException{
+    public static String aaConvertion(File file,DynamicForm form) throws IOException{
         BufferedImage bi= ImageIO.read(file);
         ConfigManager cm = generateConfigManager(form);
         CharManager charm=new CharManager(cm);
         PixelTable tmp=img2LineImg(bi,cm);
         return lineImg2AA(tmp.data,tmp.width,tmp.height,charm,cm)[0];
     }
-    public static ConfigManager generateConfigManager(Map<String,String[]> form){
+    public static ConfigManager generateConfigManager(DynamicForm form){
         final int INDEX=6;
         Map<String,String> tmp=new HashMap<>();
-        if(form.get("sel1")[0].equals("NORESIZE")) {
+        if(form.get("sel1").equals("NORESIZE")) {
             tmp.put("sizeType", "0");
             tmp.put("sizeImage_w", "0");
             tmp.put("sizeImage_h", "0");
         }else{
-            String num=form.get("sel1")[0].substring(INDEX);//substring->NOTNULL
+            String num=form.get("sel1").substring(INDEX);//substring->NOTNULL
 
             if(num.equals(""))
                 throw new RuntimeException();
@@ -78,8 +79,8 @@ public class ConvertionUtil {
             tmp.put("sizeImage_w",w);
             tmp.put("sizeImage_h",h);
         }
-        tmp.put("accuracy",form.get("slider")[0]);
-        tmp.put("lapRange",form.get("sel2")[0]);
+        tmp.put("accuracy",form.get("slider"));
+        tmp.put("lapRange",form.get("sel2"));
         tmp.put("noiseLen","20");
         tmp.put("connectRange","1");
         tmp.put("fontName","MS Gothic");
@@ -91,7 +92,7 @@ public class ConvertionUtil {
         tmp.put("multi","true");
         tmp.put("matchCnt","1");
         tmp.put("charSet","2");
-        if(form.containsKey("tone")){
+        if(form.get("tone")!=null){
             tmp.put("tone","true");
         }else {
             tmp.put("tone", "false");
@@ -116,13 +117,13 @@ public class ConvertionUtil {
         //http://www.mltlab.com/wp/archives/67
         String OS_NAME= System.getProperty("os.name").toLowerCase();
         if(OS_NAME.startsWith("windows")){
-            if(form.get("font")[0].equals("monospaced")){
+            if(form.get("font").equals("monospaced")){
                 cm.fontName="MS Gothic";
             }else{
                 cm.fontName="MS PGothic";
             }
         }else if(OS_NAME.startsWith("linux")){
-            if(form.get("font")[0].equals("monospaced")){
+            if(form.get("font").equals("monospaced")){
                 cm.fontName="monospaced";
             }else{
                 cm.fontName="SansSerif";

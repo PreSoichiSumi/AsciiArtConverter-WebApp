@@ -1,6 +1,8 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import play.data.DynamicForm;
+import play.data.FormFactory;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
@@ -11,7 +13,6 @@ import views.html.index;
 import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -20,6 +21,8 @@ import java.util.Map;
 public class HomeController extends Controller {
     @Inject
     WebJarAssets webJarAssets;
+    @Inject
+    FormFactory formfactory;
     /**
      * An action that renders an HTML page with a welcome message.
      * The configuration in the <code>routes</code> file means that
@@ -38,7 +41,8 @@ public class HomeController extends Controller {
      */
     public Result aaConvert(){
         MultipartFormData.FilePart picture=request().body().asMultipartFormData().getFile("picture");
-        Map<String,String[]> form= request().body(). asMultipartFormData().asFormUrlEncoded();//checkboxは値がないときにはmapに要素すら無いので注意
+        //Map<String,String[]> form= request().body(). asMultipartFormData().asFormUrlEncoded();//checkboxは値がないときにはmapに要素すら無いので注意
+        DynamicForm form=formfactory.form().bindFromRequest();
         if(picture!=null){
             File file = (File)picture.getFile();
 
