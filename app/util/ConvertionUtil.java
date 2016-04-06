@@ -118,13 +118,15 @@ public class ConvertionUtil {
         String OS_NAME= System.getProperty("os.name").toLowerCase();
         if(OS_NAME.startsWith("windows")){
             if(form.get("font").equals("monospaced")){
-                cm.fontName="MS Gothic";
+                //cm.fontName="MS Gothic";
+                cm.fontName="VL Gothic Regular";
             }else{
                 cm.fontName="MS PGothic";
             }
         }else if(OS_NAME.startsWith("linux")){
             if(form.get("font").equals("monospaced")){
-                cm.fontName="Monospaced";
+                //cm.fontName="Monospaced";
+                cm.fontName="VL Gothic Regular";
             }else{
                 cm.fontName="SansSerif";
             }

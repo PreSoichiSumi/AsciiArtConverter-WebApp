@@ -24,6 +24,7 @@ public class ApplicationTest {
     @Inject
     WebJarAssets webJarAssets;
 
+
     @Test
     public void simpleCheck() {
         int a = 1 + 1;
