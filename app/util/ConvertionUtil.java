@@ -124,7 +124,7 @@ public class ConvertionUtil {
             }
         }else if(OS_NAME.startsWith("linux")){
             if(form.get("font").equals("monospaced")){
-                cm.fontName="monospaced";
+                cm.fontName="Monospaced";
             }else{
                 cm.fontName="SansSerif";
             }
