@@ -26,8 +26,14 @@ import java.util.concurrent.Future;
  * Created by s-sumi on 2016/03/25.
  */
 public class ConvertionUtil {
-    public static String aaConvertion(File file,DynamicForm form) throws IOException{
-        BufferedImage bi= ImageIO.read(file);
+    public static String aaConvertion(File file,DynamicForm form){
+        BufferedImage bi;
+        try {
+            bi = ImageIO.read(file);
+        }catch(IOException e){
+            e.printStackTrace();
+            return "";
+        }
         ConfigManager cm = generateConfigManager(form);
         CharManager charm=new CharManager(cm);
         PixelTable tmp=img2LineImg(bi,cm);
