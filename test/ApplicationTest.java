@@ -1,11 +1,17 @@
+import aacj.config.CharManager;
+import aacj.config.ConfigManager;
+import aacj.model.PixelTable;
 import controllers.WebJarAssets;
 import org.junit.Test;
 import play.twirl.api.Content;
+import util.ConvertionUtil;
 
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
+import java.awt.image.BufferedImage;
+import java.util.Objects;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 /**
@@ -30,4 +36,32 @@ public class ApplicationTest {
         assertEquals("text/html", html.contentType());
         assertTrue(html.body().contains("Your new application is ready."));
     }
+    @Test
+    public void regexTest(){
+        String str="abababaaaaababbaba";
+        str=str.replaceAll("a|b","");
+        assertTrue(Objects.equals(str,""));
+    }
+
+    @Test
+    public void convertTest(){
+        BufferedImage bi;
+        try {
+            bi = ImageIO.read(this.getClass()
+                    .getResource("resources/whiteImage.png"));
+
+            ConfigManager cm = ConvertionUtil.generateConfigManager();
+            CharManager charm=new CharManager(cm);
+            PixelTable lineImg=ConvertionUtil.img2LineImg(bi,cm);
+            String aa= ConvertionUtil.lineImg2AA(lineImg.data,lineImg.width,
+                    lineImg.height,charm,cm)[0];
+
+            assertTrue(Objects.equals(
+                    aa.replaceAll(" |　|\r|\n","") , "" ));
+
+        }catch(Exception e){
+            fail();
+        }
+    }
+
 }

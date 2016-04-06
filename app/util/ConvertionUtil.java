@@ -136,7 +136,7 @@ public class ConvertionUtil {
         cm.fontSize=9;
         return cm;
     }
-    private static PixelTable img2LineImg(BufferedImage img, ConfigManager cm){
+    public static PixelTable img2LineImg(BufferedImage img, ConfigManager cm){
         int w=img.getWidth();
         int h=img.getHeight();
         if (cm.sizeType != ConfigManager.SizeType.NoResize) {
@@ -149,7 +149,7 @@ public class ConvertionUtil {
                 cm.accuracy,cm.lapRange,cm.noiseLen,cm.connectRange,cm);
         return ImageUtil.zoomImage(lineImg,new Size(w,h),true);
     }
-    private static String[] lineImg2AA(int[] bmp, int width, int height, CharManager charm, ConfigManager cm){
+    public static String[] lineImg2AA(int[] bmp, int width, int height, CharManager charm, ConfigManager cm){
         CharTable table = getTable(bmp, width, height);  //2値化画像取得？
         CharTable toneTable = getToneTable(bmp, width, height, cm);    //トーン用
 
@@ -260,6 +260,43 @@ public class ConvertionUtil {
             }
         }
         return table;
+    }
+
+    public static ConfigManager generateConfigManager(){
+        final int INDEX=6;
+        Map<String,String> tmp=new HashMap<>();
+        tmp.put("sizeType", "0");
+        tmp.put("sizeImage_w", "0");
+        tmp.put("sizeImage_h", "0");
+        tmp.put("accuracy","50");
+        tmp.put("lapRange","9");
+        tmp.put("noiseLen","20");
+        tmp.put("connectRange","1");
+        tmp.put("fontName","MS Gothic");
+        tmp.put("fontSize","9");
+        tmp.put("pitch","0");
+        tmp.put("match","2");
+        tmp.put("score1","80");
+        tmp.put("score2","100");
+        tmp.put("multi","true");
+        tmp.put("matchCnt","1");
+        tmp.put("charSet","2");
+        tmp.put("tone", "false");
+        tmp.put("reversal","false");
+        tmp.put("toneValue","220");
+        tmp.put("toneTxt",":＠: ＠:  ＠. ");
+        tmp.put("textColor","0,0,0");
+        tmp.put("canvasColor","255,255,255");
+        tmp.put("angle","2");
+        tmp.put("useNotDir","true");
+        tmp.put("score3","80");
+        tmp.put("score4","100");
+
+        ConfigManager cm=new ConfigManager();
+        cm.setConfig(tmp);
+        cm.fontName="Monospaced";
+        cm.fontSize=9;
+        return cm;
     }
 
 }
