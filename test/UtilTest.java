@@ -22,40 +22,40 @@ public class UtilTest {
     @Test
     public void generateConfigManagerTest0() {
         Font f=new Font("a;slkdf",Font.PLAIN,9);
-        assertTrue(f.getFontName().contains("Dialog"));
+        assertTrue(f.getFontName().contains(Font.DIALOG));
     }
     @Test
     public void generateConfigManagerTest00() {
         Font f=new Font("Dialog",Font.PLAIN,9);
-        assertTrue(f.getFontName().contains("Dialog"));
+        assertTrue(f.getFontName().contains(Font.DIALOG));
     }
     @Test
     public void generateConfigManagerTest01() {
         Font f=new Font("Monospaced",Font.PLAIN,9);
-        assertFalse(f.getFontName().contains("Dialog"));
+        assertFalse(f.getFontName().contains(Font.DIALOG));
     }
     @Test
     public void generateConfigManagerTest02() {
         Font f=new Font("SansSerif",Font.PLAIN,9);
-        assertFalse(f.getFontName().contains("Dialog"));
+        assertFalse(f.getFontName().contains(Font.DIALOG));
     }
     @Test
     public void generateConfigManagerTest03() {
         Font f=new Font("Arial",Font.PLAIN,9);
-        assertFalse(f.getFontName().contains("Dialog"));
+        assertFalse(f.getFontName().contains(Font.DIALOG));
     }
     @Test
     public void generateConfigManagerTest04() {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             Font f = new Font("MS Gothic", Font.PLAIN, 9);
-            assertFalse(f.getFontName().contains("Dialog"));
+            assertFalse(f.getFontName().contains(Font.DIALOG));
         }
     }
     @Test
     public void generateConfigManagerTest05() {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             Font f = new Font("MS PGothic", Font.PLAIN, 9);
-            assertFalse(f.getFontName().contains("Dialog"));
+            assertFalse(f.getFontName().contains(Font.DIALOG));
         }
     }
 
