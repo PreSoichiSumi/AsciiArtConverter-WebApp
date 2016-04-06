@@ -12,7 +12,6 @@ import play.data.DynamicForm;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +29,7 @@ public class ConvertionUtil {
         BufferedImage bi;
         try {
             bi = ImageIO.read(file);
-        }catch(IOException e){
+        }catch(Exception e){
             e.printStackTrace();
             return "";
         }

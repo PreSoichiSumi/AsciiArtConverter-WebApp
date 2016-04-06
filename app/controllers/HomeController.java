@@ -12,7 +12,6 @@ import views.html.index;
 
 import javax.inject.Inject;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -46,14 +45,10 @@ public class HomeController extends Controller {
         if(picture!=null){
             File file = (File)picture.getFile();
 
-            try {
-                String aa = ConvertionUtil.aaConvertion(file,form);
-                ObjectNode result= Json.newObject();
-                result.put("aa",aa);
-                return ok(result);
-            }catch (IOException e) {
-                return badRequest("invalid request");
-            }
+            String aa = ConvertionUtil.aaConvertion(file,form);
+            ObjectNode result= Json.newObject();
+            result.put("aa",aa);
+            return ok(result);
         }
         return badRequest("picture is null");
     }
