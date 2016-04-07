@@ -19,11 +19,7 @@ public class UtilTest {
         assertTrue(hc.isPicture(jpg));
     }
 
-    @Test
-    public void generateConfigManagerTest0() {
-        Font f=new Font("a;slkdf",Font.PLAIN,9);
-        assertTrue(f.getFontName().contains(Font.DIALOG));
-    }
+
     @Test
     public void generateConfigManagerTest00() {
         Font f=new Font("Dialog",Font.PLAIN,9);
@@ -41,9 +37,10 @@ public class UtilTest {
     }
     @Test
     public void generateConfigManagerTest03() {
-        Font f=new Font("Arial",Font.PLAIN,9);
-        assertFalse(f.getFontName().contains(Font.DIALOG));
+        Font f=new Font("a;slkdf",Font.PLAIN,9);
+        assertTrue(f.getFontName().contains(Font.DIALOG));
     }
+
     @Test
     public void generateConfigManagerTest04() {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
