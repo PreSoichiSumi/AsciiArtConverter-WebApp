@@ -1,10 +1,12 @@
-import javax.inject.*;
-import play.*;
-import play.mvc.EssentialFilter;
-import play.http.HttpFilters;
-import play.mvc.*;
-
 import filters.ExampleFilter;
+import play.Environment;
+import play.Mode;
+import play.filters.gzip.GzipFilter;
+import play.http.HttpFilters;
+import play.mvc.EssentialFilter;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * This class configures filters that run on every request. This
@@ -23,12 +25,16 @@ import filters.ExampleFilter;
 public class Filters implements HttpFilters {
 
     private final Environment env;
-    private final EssentialFilter exampleFilter;
 
     @Inject
-    public Filters(Environment env, ExampleFilter exampleFilter) {
+    GzipFilter gzipFilter;
+
+    @Inject
+    ExampleFilter exampleFilter;
+
+    @Inject
+    public Filters(Environment env) {
         this.env = env;
-        this.exampleFilter = exampleFilter;
     }
 
     @Override
@@ -37,7 +43,7 @@ public class Filters implements HttpFilters {
       // we're running in production or test mode then don't use any
       // filters at all.
       if (env.mode().equals(Mode.DEV)) {
-          return new EssentialFilter[] { exampleFilter };
+          return new EssentialFilter[] { exampleFilter,gzipFilter.asJava()};
       } else {
          return new EssentialFilter[] {};      
       }
