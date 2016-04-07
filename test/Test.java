@@ -26,7 +26,7 @@ public class Test {
         BufferedImage bi;
         try {
             bi = ImageIO.read(this.getClass()
-                    .getResource("resources/whiteImage.png"));
+                    .getResource("whiteImage.png"));
 
             ConfigManager cm = ConvertionUtil.generateConfigManager();
             CharManager charm=new CharManager(cm);
