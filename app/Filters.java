@@ -1,3 +1,4 @@
+import com.google.inject.Inject;
 import filters.ExampleFilter;
 import play.Environment;
 import play.Mode;
@@ -5,7 +6,6 @@ import play.filters.gzip.GzipFilter;
 import play.http.HttpFilters;
 import play.mvc.EssentialFilter;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
@@ -18,7 +18,6 @@ import javax.inject.Singleton;
  * the <code>application.conf</code> configuration file.
  *
  * @param env Basic environment settings for the current application.
- * @param exampleFilter A demonstration filter that adds a header to
  * each response.
  */
 @Singleton
