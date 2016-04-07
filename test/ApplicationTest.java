@@ -1,8 +1,19 @@
 import aacj.config.CharManager;
 import aacj.config.ConfigManager;
 import aacj.model.PixelTable;
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Module;
 import controllers.WebJarAssets;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import play.Application;
+import play.ApplicationLoader;
+import play.Environment;
+import play.inject.guice.GuiceApplicationBuilder;
+import play.inject.guice.GuiceApplicationLoader;
+import play.test.Helpers;
 import play.twirl.api.Content;
 import util.ConvertionUtil;
 
@@ -21,9 +32,34 @@ import static org.junit.Assert.*;
  *
  */
 public class ApplicationTest {
+
+
     @Inject
     WebJarAssets webJarAssets;
 
+    @Inject
+    Application application;
+    @Before
+    public void setup() {
+        Module testModule = new AbstractModule() {
+            @Override
+            public void configure() {
+                // Install custom test binding here
+            }
+        };
+
+        GuiceApplicationBuilder builder = new GuiceApplicationLoader()
+                .builder(new ApplicationLoader.Context(Environment.simple()))
+                .overrides(testModule);
+        Guice.createInjector(builder.applicationModule()).injectMembers(this);
+
+        Helpers.start(application);
+    }
+
+    @After
+    public void teardown() {
+        Helpers.stop(application);
+    }
 
     @Test
     public void simpleCheck() {
