@@ -69,14 +69,17 @@
             その場合にMultipleMatchesExceptionがWebJarAssetsLocatorから投げられる．その場合は
             <version>/xxx.js などとする．バージョンとファイル名の間にディレクトリ名が入るかどうかは
             <project-root>/target/web/web-modules/main/webjars/lib/<library-name> 以下を見て決める-->
-    <script src='@routes.WebJarAssets.at(webJarAssets.locate("bootstrap-slider.min.js"))'></script>
-    <script src='@routes.WebJarAssets.at(webJarAssets.locate("src-min/ace.js"))'></script>
+
     <script src='@routes.WebJarAssets.at(webJarAssets.locate("2.2.2/jquery.min.js"))'></script>
     <script src='@routes.WebJarAssets.at(webJarAssets.locate("3.3.6/js/bootstrap.min.js"))'></script>
-    <script src='@routes.Assets.versioned("javascripts/ace-setting.js")'></script>
-    <script src="@routes.Assets.versioned("javascripts/aaconvert.js")"></script>
     <script src='@routes.WebJarAssets.at(webJarAssets.locate("fileinput.min.js"))'></script>
     <script src='@routes.WebJarAssets.at(webJarAssets.locate("canvas-to-blob.min.js"))'></script>
+    <script src='@routes.WebJarAssets.at(webJarAssets.locate("bootstrap-slider.min.js"))'></script>
+    <script src='@routes.WebJarAssets.at(webJarAssets.locate("src-min/ace.js"))'></script>
     <script src='@routes.Assets.versioned("javascripts/input-setting.js")'></script>
     <script src='@routes.Assets.versioned("javascripts/slider-setting.js")'></script>
+    <script src='@routes.Assets.versioned("javascripts/input-setting.js")'></script>
+    <script src='@routes.Assets.versioned("javascripts/slider-setting.js")'></script>
+    <script src='@routes.Assets.versioned("javascripts/ace-setting.js")'></script>
+    <script src="@routes.Assets.versioned("javascripts/aaconvert.js")"></script>
 </html>
