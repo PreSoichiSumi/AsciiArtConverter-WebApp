@@ -24,7 +24,8 @@
         <link rel="stylesheet" href='@routes.WebJarAssets.at(webJarAssets.locate("3.3.6/css/bootstrap.min.css"))'>
         <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/narrow-jumbotron.css")'>
         <link rel="stylesheet" href='@routes.WebJarAssets.at(webJarAssets.locate("css/fileinput.min.css"))'>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>-->
+        <script src='@routes.WebJarAssets.at(webJarAssets.locate("src-min/ace.js"))'></script>
         <!--大体は--WebJarAssets.at(webJarAssets.locate("jquery.min.js"))などで通る．
             たまにあるjsが既に保存済みでかつバージョン違いのjsをライブラリとして読み込んでいるときがあり，
             その場合にMultipleMatchesExceptionがWebJarAssetsLocatorから投げられる．その場合は

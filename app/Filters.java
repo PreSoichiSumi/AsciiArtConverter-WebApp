@@ -31,6 +31,7 @@ public class Filters implements HttpFilters {
     @Inject
     ExampleFilter exampleFilter;
 
+
     @Inject
     public Filters(Environment env) {
         this.env = env;
@@ -44,7 +45,7 @@ public class Filters implements HttpFilters {
       if (env.mode().equals(Mode.DEV)) {
           return new EssentialFilter[] { exampleFilter,gzipFilter.asJava()};
       } else {
-         return new EssentialFilter[] {};      
+         return new EssentialFilter[] {gzipFilter.asJava()};
       }
     }
 

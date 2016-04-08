@@ -14,7 +14,7 @@ public class UtilTest {
     @Test
     public void isPictureTest() {
         HomeController hc = new HomeController();
-        File jpg = new File("test/resources/test.jpg");
+        File jpg = new File(this.getClass().getResource("test.jpg").getPath());//同じパッケージに属するならこの書き方でリソースを持ってくることができる
         assertTrue(jpg.exists());
         assertTrue(hc.isPicture(jpg));
     }
