@@ -7,9 +7,15 @@ import play.mvc.Result;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executor;
 import java.util.function.Function;
+
+import static play.mvc.Http.HeaderNames.CACHE_CONTROL;
+import static play.mvc.Http.HeaderNames.EXPIRES;
 
 
 /**
@@ -39,7 +45,8 @@ public class CustomizedFilter extends Filter {
         RequestHeader requestHeader) {
 
         return next.apply(requestHeader).thenApplyAsync(
-            result -> result.withHeader("Cache-Control", "private, max-age=3600"),
+            result -> result.withHeaders(CACHE_CONTROL, "public, max-age=3600",
+                                        EXPIRES, DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")).plusDays(2))),
             exec
         );
     }
