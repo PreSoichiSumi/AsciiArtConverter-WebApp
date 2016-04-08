@@ -41,9 +41,9 @@ public class Filters implements HttpFilters {
       // we're running in production or test mode then don't use any
       // filters at all.
       if (env.mode().equals(Mode.DEV)) {
-          return new EssentialFilter[] {customizedFilter,gzipFilter.asJava()};
+          return new EssentialFilter[] {customizedFilter, gzipFilter.asJava()};
       } else {
-         return new EssentialFilter[] {gzipFilter.asJava()};
+         return new EssentialFilter[] {customizedFilter, gzipFilter.asJava()};
       }
     }
 
