@@ -24,11 +24,13 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.0.3")
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
 //resolvers+= "our Libraries" at "https://github.com/oguna/asciiart-converter-java/"
-
 //sbt-github-repo
 /*resolvers ++= Seq(
   "jgit-repo" at "http://download.eclipse.org/jgit/maven",
   "hexx-releases" at "http://hexx.github.io/maven/releases"
 )
-
 addSbtPlugin("com.github.hexx" % "sbt-github-repo" % "0.1.0")*/
+
+resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
+addSbtPlugin("com.typesafe.sbt" % "sbt-uglify" % "1.0.3")
+addSbtPlugin("com.typesafe.sbt" % "sbt-gzip" % "1.0.0")

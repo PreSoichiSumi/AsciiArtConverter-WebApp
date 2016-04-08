@@ -22,7 +22,8 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.3.6",
   "org.webjars" % "jquery" % "2.2.2",
   "org.webjars.bower" % "bootstrap-fileinput" % "4.3.1",
-  "org.webjars" % "bootstrap-slider" % "5.3.1"
+  "org.webjars" % "bootstrap-slider" % "5.3.1",
+  "com.mohiva" %% "play-html-compressor" % "0.6.1"
   //,
 //  "com.github.oguna" % "aacj" % "1.0.0"
 )
@@ -31,6 +32,7 @@ herokuAppName in Compile := "asciiart-converter"
 routesGenerator:=InjectedRoutesGenerator
 resolvers+="webjars" at "http://webjars.github.com/m2"
 
+pipelineStages := Seq(rjs, uglify, digest, gzip)
 
 //unmanagedSourceDirectories += project.in(file(".")).dependsOn(githubRepo)
 

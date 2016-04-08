@@ -1,12 +1,15 @@
 package filters;
 
 import akka.stream.Materializer;
+import play.mvc.Filter;
+import play.mvc.Http.RequestHeader;
+import play.mvc.Result;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executor;
 import java.util.function.Function;
-import javax.inject.*;
-import play.mvc.*;
-import play.mvc.Http.RequestHeader;
 
 
 /**
@@ -20,12 +23,12 @@ import play.mvc.Http.RequestHeader;
  * It is used below by the <code>thenAsyncApply</code> method.
  */
 @Singleton
-public class ExampleFilter extends Filter {
+public class CustomizedFilter extends Filter {
 
     private final Executor exec;
 
     @Inject
-    public ExampleFilter(Materializer mat, Executor exec) {
+    public CustomizedFilter(Materializer mat, Executor exec) {
         super(mat);
         this.exec = exec;
     }
@@ -36,7 +39,7 @@ public class ExampleFilter extends Filter {
         RequestHeader requestHeader) {
 
         return next.apply(requestHeader).thenApplyAsync(
-            result -> result.withHeader("X-ExampleFilter", "foo"),
+            result -> result.withHeader("X-CustomizedFilter", "foo"),
             exec
         );
     }
