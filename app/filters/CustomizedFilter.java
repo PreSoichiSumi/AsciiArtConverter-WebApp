@@ -39,7 +39,7 @@ public class CustomizedFilter extends Filter {
         RequestHeader requestHeader) {
 
         return next.apply(requestHeader).thenApplyAsync(
-            result -> result.withHeader("X-CustomizedFilter", "foo"),
+            result -> result.withHeader("Cache-Control", "private, max-age=3600"),
             exec
         );
     }
