@@ -31,6 +31,18 @@ herokuAppName in Compile := "asciiart-converter"
 routesGenerator:=InjectedRoutesGenerator
 resolvers+="webjars" at "http://webjars.github.com/m2"
 
+//
+import com.typesafe.sbt.packager.Keys.scriptClasspath
+scriptClasspath := {
+  val originalClasspath = scriptClasspath.value
+  val manifest = new java.util.jar.Manifest()
+  manifest.getMainAttributes().putValue("Class-Path", originalClasspath.mkString(" "))
+  val classpathJar = (target in Universal).value / "lib" / "classpath.jar"
+  IO.jar(Seq.empty, classpathJar, manifest)
+  Seq(classpathJar.getName)
+}
+mappings in Universal += (((target in Universal).value / "lib" / "classpath.jar") -> "lib/classpath.jar")
+
 //pipelineStages:= Seq(rjs, digest, gzip)
 
 //unmanagedSourceDirectories += project.in(file(".")).dependsOn(githubRepo)
