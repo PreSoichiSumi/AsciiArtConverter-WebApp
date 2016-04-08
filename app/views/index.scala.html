@@ -1,20 +1,7 @@
-@*
-* This template takes a single argument, a String containing a
-* message to display.
-*@
-
 @(message: String,webJarAssets: WebJarAssets)
 
-
-@*
-* Call the the `main` template with two arguments. The first
-* argument is a `String` with the title of the page, the second
-* argument is an `Html` object containing the body of the page.
-*@
 @main("AsciiArtConverter",webJarAssets) {
     @message
-
-
     <div class="row">
         <form id="settingForm"  method="post" action="">
             <div class="row">
@@ -47,11 +34,9 @@
                                     </div>
                                 </div>
                                 <div class="panel-body">
-
                                     <b>輪郭抽出精度 </b>
                                     <input id="slider" name="slider" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
                                     <span id="sliderText">Current Slider Value: <span id="sliderVal">50</span></span>
-
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group">
@@ -87,22 +72,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                                        AA変換設定2
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapse3" class="panel-collapse collapse">
-                                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo consequat.
-                                </div>
-                            </div>
-                        </div>-->
                     </div>
                 </div>
             </div>
@@ -122,7 +91,5 @@
         </div>
         <button id="save" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i></button>
     </div>
-
     <div id="editor" style="height: 600px"></div>
-
 }

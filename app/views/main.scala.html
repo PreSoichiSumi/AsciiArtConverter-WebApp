@@ -16,40 +16,18 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
-
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
-
         <title>@title</title>
-
-
-
     </head>
 
     <body>
-        @* And here's where we render the `Html` object containing
-         * the page content. *@
-        <div class="container-fluid">
+       <div class="container-fluid">
             <div class="header clearfix">
-
                 <nav>
                 <ul class="nav nav-pills pull-left">
                     <img class="img-responsive" src='@routes.Assets.versioned("images/LOGO.bmp")' alt="Chania" width="60%" height="60%">
                 </ul>
-                <!--<ul class="nav nav-pills pull-xs-right">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                  </li>
-                  <li class="nav-item">
-
-                    <a class="nav-link" href="#">Contact</a>
-                  </li>
-                </ul>-->
                 </nav>
-
-
             </div>
             @content
 
@@ -63,13 +41,6 @@
     <link rel="stylesheet" href='@routes.WebJarAssets.at(webJarAssets.locate("3.3.6/css/bootstrap.min.css"))'>
     <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/narrow-jumbotron.css")'>
     <link rel="stylesheet" href='@routes.WebJarAssets.at(webJarAssets.locate("css/fileinput.min.css"))'>
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>-->
-        <!--大体は--WebJarAssets.at(webJarAssets.locate("jquery.min.js"))などで通る．
-            たまにあるjsが既に保存済みでかつバージョン違いのjsをライブラリとして読み込んでいるときがあり，
-            その場合にMultipleMatchesExceptionがWebJarAssetsLocatorから投げられる．その場合は
-            <version>/xxx.js などとする．バージョンとファイル名の間にディレクトリ名が入るかどうかは
-            <project-root>/target/web/web-modules/main/webjars/lib/<library-name> 以下を見て決める-->
-
     <script src='@routes.WebJarAssets.at(webJarAssets.locate("2.2.2/jquery.min.js"))'></script>
     <script src='@routes.WebJarAssets.at(webJarAssets.locate("3.3.6/js/bootstrap.min.js"))'></script>
     <script src='@routes.WebJarAssets.at(webJarAssets.locate("fileinput.min.js"))'></script>
