@@ -18,38 +18,37 @@ public class UtilTest {
         assertTrue(jpg.exists());
         assertTrue(hc.isPicture(jpg));
     }
-
-
+    
     @Test
-    public void generateConfigManagerTest00() {
+    public void fontTest00() {
         Font f=new Font("Dialog",Font.PLAIN,9);
         assertTrue(f.getFontName().contains(Font.DIALOG));
     }
     @Test
-    public void generateConfigManagerTest01() {
+    public void fontTest01() {
         Font f=new Font("Monospaced",Font.PLAIN,9);
         assertFalse(f.getFontName().contains(Font.DIALOG));
     }
     @Test
-    public void generateConfigManagerTest02() {
+    public void fontTest02() {
         Font f=new Font("SansSerif",Font.PLAIN,9);
         assertFalse(f.getFontName().contains(Font.DIALOG));
     }
     @Test
-    public void generateConfigManagerTest03() {
+    public void fontTest03() {
         Font f=new Font("a;slkdf",Font.PLAIN,9);
         assertTrue(f.getFontName().contains(Font.DIALOG));
     }
 
     @Test
-    public void generateConfigManagerTest04() {
+    public void fontTest04() {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             Font f = new Font("MS Gothic", Font.PLAIN, 9);
             assertFalse(f.getFontName().contains(Font.DIALOG));
         }
     }
     @Test
-    public void generateConfigManagerTest05() {
+    public void fontTest05() {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             Font f = new Font("MS PGothic", Font.PLAIN, 9);
             assertFalse(f.getFontName().contains(Font.DIALOG));
