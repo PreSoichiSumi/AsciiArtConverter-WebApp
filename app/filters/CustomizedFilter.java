@@ -46,7 +46,7 @@ public class CustomizedFilter extends Filter {
 
         return next.apply(requestHeader).thenApplyAsync(
             result -> result.withHeaders(CACHE_CONTROL, "public, max-age=3600",
-                                        EXPIRES, DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")).plusDays(2))),
+                                        EXPIRES, DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")).plusWeeks(1))),
             exec
         );
     }

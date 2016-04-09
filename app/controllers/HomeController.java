@@ -1,6 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import play.cache.Cached;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.libs.Json;
@@ -28,6 +29,7 @@ public class HomeController extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
+    @Cached(key="index.result")
     public Result index() {
         return ok(index.render("this is top page",webJarAssets));
     }
@@ -38,6 +40,7 @@ public class HomeController extends Controller {
      * http://stackoverflow.com/questions/9452375/how-to-get-the-upload-file-with-other-inputs-in-play2#9587052
      * @return
      */
+   @Cached(key="aa.result")
     public Result aaConvert(){
         MultipartFormData.FilePart picture=request().body().asMultipartFormData().getFile("picture");
         //Map<String,String[]> form= request().body(). asMultipartFormData().asFormUrlEncoded();//checkboxは値がないときにはmapに要素すら無いので注意

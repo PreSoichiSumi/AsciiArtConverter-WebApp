@@ -48,3 +48,6 @@ mappings in Universal += (((target in Universal).value / "lib" / "classpath.jar"
 //unmanagedSourceDirectories += project.in(file(".")).dependsOn(githubRepo)
 
 //lazy val githubRepo = uri("git://github.com/oguna/asciiart-converter-java.git")
+
+
+fork in run := true
