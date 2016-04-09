@@ -17,21 +17,14 @@ libraryDependencies ++= Seq(
   "commons-codec" % "commons-codec" % "1.10",
   "junit" % "junit" % "4.12",
   "org.webjars" %% "webjars-play" % "2.5.0",
-  "org.webjars" % "ace" % "1.2.0",
-  filters,
-  "org.webjars" % "bootstrap" % "3.3.6",
-  "org.webjars" % "jquery" % "2.2.2",
-  "org.webjars.bower" % "bootstrap-fileinput" % "4.3.1",
-  "org.webjars" % "bootstrap-slider" % "5.3.1"
-  //,
-//  "com.github.oguna" % "aacj" % "1.0.0"
+  filters
 )
 herokuAppName in Compile := "asciiart-converter"
 
 routesGenerator:=InjectedRoutesGenerator
 resolvers+="webjars" at "http://webjars.github.com/m2"
 
-//
+// avoid an error "your input is too long " in windows environment
 import com.typesafe.sbt.packager.Keys.scriptClasspath
 scriptClasspath := {
   val originalClasspath = scriptClasspath.value
