@@ -6,7 +6,7 @@
 精度がよく，等幅フォントでアスキーアートを作成してくれるツールが見当たらなかったので作成しました．<br>
 AA変換はlibフォルダ内の自作ライブラリを使用しています．
 
-[PageSpeed調査結果](http://ur0.work/tjhH)
+[PageSpeed](http://ur0.work/tjhH)
 
 ## フレームワーク
 Play Framework 2.5.1 + Java 8
