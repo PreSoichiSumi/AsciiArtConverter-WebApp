@@ -1,11 +1,10 @@
 @*
- * This template is called from the `index` template. This template
- * handles the rendering of the page header and body tags. It takes
- * two arguments, a `String` for the title of the page and an `Html`
- * object to insert into the body of the page.
- *@
-
-@(title: String,webJarAssets: WebJarAssets)(content: Html)
+* This template is called from the `index` template. This template
+* handles the rendering of the page header and body tags. It takes
+* two arguments, a `String` for the title of the page and an `Html`
+* object to insert into the body of the page.
+*@
+@(title: String, webJarAssets: WebJarAssets)(content: Html)
 
 <!DOCTYPE html>
 <html lang="jp">
@@ -13,7 +12,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+            <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
@@ -21,12 +20,12 @@
     </head>
 
     <body>
-       <div class="container-fluid">
+        <div class="container-fluid">
             <div class="header clearfix">
                 <nav>
-                <ul class="nav nav-pills pull-left">
-                    <img class="img-responsive" src='@routes.Assets.versioned("images/LOGO.bmp")' alt="Chania" width="60%" height="60%">
-                </ul>
+                    <ul class="nav nav-pills pull-left">
+                        <img class="img-responsive" src='@routes.Assets.versioned("images/LOGO.bmp")' alt="Chania" width="60%" height="60%">
+                    </ul>
                 </nav>
             </div>
             @content
