@@ -13,7 +13,8 @@ Play Framework 2.5.1 + Java 8
 
 ## 構成
 + リバースプロキシサーバ  Nginx
-+ アプリケーションサーバ  Netty Server x 2
++ アプリケーションサーバ  Netty Server x 2 
++ サーバOS　Ubuntu 16.04(!)
 
 ## 変換アルゴリズム概要
 1. ラプラシアンフィルタで輪郭画像を生成．輪郭画像は二値画像．
