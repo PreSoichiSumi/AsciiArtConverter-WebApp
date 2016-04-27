@@ -23,10 +23,10 @@ import static play.mvc.Http.HeaderNames.EXPIRES;
  * added to the application's list of filters by the
  * {@link ExampleFilters} class.
  *
- * @param mat This object is needed to handle streaming of requests
- * and responses.
+ * @param mat  This object is needed to handle streaming of requests
+ *             and responses.
  * @param exec This class is needed to execute code asynchronously.
- * It is used below by the <code>thenAsyncApply</code> method.
+ *             It is used below by the <code>thenAsyncApply</code> method.
  */
 @Singleton
 public class CustomizedFilter extends Filter {
@@ -41,13 +41,13 @@ public class CustomizedFilter extends Filter {
 
     @Override
     public CompletionStage<Result> apply(
-        Function<RequestHeader, CompletionStage<Result>> next,
-        RequestHeader requestHeader) {
+            Function<RequestHeader, CompletionStage<Result>> next,
+            RequestHeader requestHeader) {
 
         return next.apply(requestHeader).thenApplyAsync(
-            result -> result.withHeaders(CACHE_CONTROL, "public, max-age=3600",
-                                        EXPIRES, DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")).plusWeeks(1))),
-            exec
+                result -> result.withHeaders(CACHE_CONTROL, "public, max-age=3600",
+                        EXPIRES, DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")).plusWeeks(1))),
+                exec
         );
     }
 
